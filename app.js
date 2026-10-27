@@ -7,11 +7,11 @@ const prog = el => { const r = el.getBoundingClientRect(); return clamp(-r.top /
 
 /* ---------- data ---------- */
 const CLIPS = [
-  { t: 'Mas que se', v: '125K', img: 'masquese', url: 'https://www.youtube.com/watch?v=b7Q6FWaLPWg', tag: 'Nuevo' },
-  { t: 'Crysel', v: '500K', img: 'crysel', url: 'https://www.youtube.com/watch?v=RX7UUcbB6rE' },
-  { t: 'VUDU', v: '420K', img: 'vudu', url: 'https://www.youtube.com/watch?v=pBTnjICATt8', likes: '11K' },
+  { t: 'Mas que se', v: '136K', img: 'masquese', url: 'https://www.youtube.com/watch?v=b7Q6FWaLPWg', tag: 'Nuevo', likes: '5.2K', dur: '2:29', age: '2026-10-13' },
+  { t: 'Crysel', v: '497K', img: 'crysel', url: 'https://www.youtube.com/watch?v=RX7UUcbB6rE', likes: '14K', dur: '3:17', age: '2025-11-20' },
+  { t: 'VUDU', v: '444K', img: 'vudu', url: 'https://www.youtube.com/watch?v=pBTnjICATt8', likes: '11K', age: '2026-08-26' },
   { t: 'Corona de Flores', v: '95K', img: 'corona', url: 'https://www.youtube.com/watch?v=Rw9RxRElJAU', dur: '2:18', age: '6m' },
-  { t: 'Polvo de estrellas', v: '150K', img: 'polvo', url: 'https://www.youtube.com/watch?v=Zw3WfPCBSXk' },
+  { t: 'Polvo de estrellas', v: '155K', img: 'polvo', url: 'https://www.youtube.com/watch?v=Zw3WfPCBSXk', likes: '8K', age: '2025-08-29' },
   { t: 'Eter', v: '111K', img: 'eter', url: 'https://www.youtube.com/watch?v=OqTtsEaMvg8', dur: '3:02', age: '1y' },
   { t: 'No me mires', v: '96K', img: 'nomemires', url: 'https://www.youtube.com/watch?v=iCjTMngRDJw', dur: '2:50', age: '1y' },
   { t: 'Dejame Volar // Debilidad', v: '67K', img: 'dejamevolar', url: 'https://www.youtube.com/watch?v=xSDp29Fx2yg', dur: '4:42', age: '8m', feat: 'zerostumped' },

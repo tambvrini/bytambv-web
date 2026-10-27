@@ -68,8 +68,8 @@ const prog = el => { const r = el.getBoundingClientRect(); return clamp(-r.top /
 const vfly = $('#vfly'), vspace = $('#vspace'), vscene = $('#vscene'), strobe = $('#strobe');
 const num = v => parseFloat(v) * (/M/i.test(v) ? 1e6 : /K/i.test(v) ? 1e3 : 1);
 const VC = $$('#rows li > a').map(a => ({ url: a.href, t: ($('.t', a).firstChild || {}).textContent.trim(), v: $('.v', a).textContent.trim(), img: $('.th img', a).getAttribute('src'), dur: a.dataset.dur, age: a.dataset.age, likes: a.dataset.likes, feat: a.dataset.feat, isNew: !!a.dataset.new }));
-const NV = VC.length, STEP = 42, maxV = Math.max(...VC.map(c => num(c.v)));
-const rank = VC.map(c => num(c.v)).map((n, i, arr) => 1 + arr.filter(m => m > n).length);
+const NV = VC.length, STEP = 42; let maxV = Math.max(...VC.map(c => num(c.v)));
+let rank = VC.map(c => num(c.v)).map((n, i, arr) => 1 + arr.filter(m => m > n).length);
 vfly.style.setProperty('--n', NV);
 // clips
 vspace.innerHTML = VC.map((c, i) => `<a class="vcard" href="${c.url}" target="_blank" rel="noopener" data-cur="PLAY"><img src="${c.img}" alt="${c.t}" loading="lazy"><span class="lbl">${String(i + 1).padStart(2, '0')}</span><span class="vw">${c.v}</span></a>`).join('')
@@ -101,7 +101,7 @@ function setClip(k, quiet) {
   const step = t => { if (id !== cu) return; const q = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - q, 4); vviews.textContent = fmtK(to * e).replace(/^0K$/, '0'); if (q < 1) requestAnimationFrame(step); else vviews.textContent = c.v; };
   reduce ? (vviews.textContent = c.v) : requestAnimationFrame(step);
   vmeter.style.transform = `scaleX(${(to / maxV).toFixed(3)})`;
-  const meta = [[T.rank, `#${rank[k]}`]]; if (c.likes) meta.push([T.likes, c.likes]); if (c.dur) meta.push([T.dur, c.dur]); if (c.age) meta.push([T.age, AGE[lg][c.age]]);
+  const meta = [[T.rank, `#${rank[k]}`]]; if (c.likes) meta.push([T.likes, c.likes]); if (c.dur) meta.push([T.dur, c.dur]); if (c.age) meta.push([T.age, /^\d{4}-/.test(c.age) ? new Date(c.age + 'T12:00:00').toLocaleDateString(lg === 'en' ? 'en-GB' : 'es-ES', { day: 'numeric', month: 'short', year: 'numeric' }).replace('.', '') : AGE[lg][c.age]]);
   vmeta.innerHTML = meta.map(([a, b], i) => `<span style="animation-delay:${120 + i * 70}ms"><em>${a}</em><b>${b}</b></span>`).join('');
   vplay.href = c.url; vplay.textContent = T.play;
   lis.forEach((li, i) => li.classList.toggle('on', i === k));
@@ -227,6 +227,20 @@ $('.bx', br).onclick = closeBranch;
 br.addEventListener('click', e => { if (e.target === br || e.target === svg) closeBranch(); });
 addEventListener('keydown', e => { if (e.key === 'Escape') closeBranch(); if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.matches('.bt[data-branch]')) { e.preventDefault(); openBranch(document.activeElement); } });
 addEventListener('scroll', () => { if (brOpen && Math.abs(scrollY - brY) > 120) closeBranch(); }, { passive: true });
+
+/* ---------- live numbers: /api/stats (YouTube Data API, refreshed daily on the server) ---------- */
+const k1 = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M' : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/, '') + 'K' : String(n);
+fetch('/api/stats').then(r => r.ok ? r.json() : null).then(d => {
+  if (!d) return;
+  if (d.channel && d.channel.subscribers) $$('[data-count="80000"],[data-count="83000"]').forEach(el => { el.dataset.count = d.channel.subscribers; el.textContent = k1(d.channel.subscribers); });
+  if (d.videos) {
+    VC.forEach(c => { const id = (c.url.match(/[?&]v=([\w-]{11})/) || [])[1], v = id && d.videos[id]; if (!v) return;
+      if (v.views) c.v = k1(v.views); if (v.likes) c.likes = k1(v.likes); if (v.duration) c.dur = v.duration; if (v.published) c.age = v.published.slice(0, 10); });
+    maxV = Math.max(...VC.map(c => num(c.v))); rank = VC.map(c => num(c.v)).map((n, i, arr) => 1 + arr.filter(m => m > n).length);
+    $$('.vcard .vw').forEach((el, i) => el.textContent = VC[i].v);
+    if (vk >= 0) setClip(vk, true);
+  }
+}).catch(() => { });
 
 /* ---------- one loop for scroll-driven bits ---------- */
 function loop() {
