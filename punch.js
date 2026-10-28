@@ -60,7 +60,6 @@ const vfly = $('#vfly'), vspace = $('#vspace'), vscene = $('#vscene'), strobe = 
 const num = v => parseFloat(v) * (/M/i.test(v) ? 1e6 : /K/i.test(v) ? 1e3 : 1);
 const VC = $$('#rows li > a').map(a => ({ url: a.href, t: ($('.t', a).firstChild || {}).textContent.trim(), v: $('.v', a).textContent.trim(), img: $('.th img', a).getAttribute('src'), dur: a.dataset.dur, age: a.dataset.age, likes: a.dataset.likes, feat: a.dataset.feat, isNew: !!a.dataset.new }));
 const NV = VC.length, STEP = 42; let maxV = Math.max(...VC.map(c => num(c.v)));
-let rank = VC.map(c => num(c.v)).map((n, i, arr) => 1 + arr.filter(m => m > n).length);
 vfly.style.setProperty('--n', NV);
 // clips
 vspace.innerHTML = VC.map((c, i) => `<a class="vcard" href="${c.url}" target="_blank" rel="noopener" data-cur="PLAY"><img src="${c.img}" alt="${c.t}" loading="lazy"><span class="lbl">${String(i + 1).padStart(2, '0')}</span><span class="vw">${c.v}</span></a>`).join('')
@@ -79,7 +78,7 @@ const vlayout = () => {
 };
 addEventListener('resize', vlayout); vlayout();
 const AGE = { es: { '6m': 'hace 6 meses', '8m': 'hace 8 meses', '1y': 'hace 1 año' }, en: { '6m': '6 months ago', '8m': '8 months ago', '1y': '1 year ago' } };
-const L = { es: { views: 'Views en YouTube', rank: 'Ranking', dur: 'Duración', age: 'Publicado', likes: 'Likes', play: 'Ver videoclip ↗', new: 'Nuevo', feat: 'con' }, en: { views: 'YouTube views', rank: 'Rank', dur: 'Length', age: 'Released', likes: 'Likes', play: 'Watch video ↗', new: 'New', feat: 'with' } };
+const L = { es: { views: 'Views en YouTube', dur: 'Duración', age: 'Publicado', likes: 'Likes', play: 'Ver videoclip ↗', new: 'Nuevo', feat: 'con' }, en: { views: 'YouTube views', dur: 'Length', age: 'Released', likes: 'Likes', play: 'Watch video ↗', new: 'New', feat: 'with' } };
 const fmtK = n => n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : Math.round(n / 1e3) + 'K';
 let cu = 0;
 function setClip(k, quiet) {
@@ -92,7 +91,7 @@ function setClip(k, quiet) {
   const step = t => { if (id !== cu) return; const q = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - q, 4); vviews.textContent = fmtK(to * e).replace(/^0K$/, '0'); if (q < 1) requestAnimationFrame(step); else vviews.textContent = c.v; };
   reduce ? (vviews.textContent = c.v) : requestAnimationFrame(step);
   vmeter.style.transform = `scaleX(${(to / maxV).toFixed(3)})`;
-  const meta = [[T.rank, `#${rank[k]}`]]; if (c.likes) meta.push([T.likes, c.likes]); if (c.dur) meta.push([T.dur, c.dur]); if (c.age) meta.push([T.age, /^\d{4}-/.test(c.age) ? new Date(c.age + 'T12:00:00').toLocaleDateString(lg === 'en' ? 'en-GB' : 'es-ES', { day: 'numeric', month: 'short', year: 'numeric' }).replace('.', '') : AGE[lg][c.age]]);
+  const meta = []; if (c.likes) meta.push([T.likes, c.likes]); if (c.dur) meta.push([T.dur, c.dur]); if (c.age) meta.push([T.age, /^\d{4}-/.test(c.age) ? new Date(c.age + 'T12:00:00').toLocaleDateString(lg === 'en' ? 'en-GB' : 'es-ES', { day: 'numeric', month: 'short', year: 'numeric' }).replace('.', '') : AGE[lg][c.age]]);
   vmeta.innerHTML = meta.map(([a, b], i) => `<span style="animation-delay:${120 + i * 70}ms"><em>${a}</em><b>${b}</b></span>`).join('');
   vplay.href = c.url; vplay.textContent = T.play;
   lis.forEach((li, i) => li.classList.toggle('on', i === k));
@@ -238,7 +237,7 @@ fetch('/api/stats').then(r => r.ok ? r.json() : null).then(d => {
   if (d.videos) {
     VC.forEach(c => { const id = (c.url.match(/[?&]v=([\w-]{11})/) || [])[1], v = id && d.videos[id]; if (!v) return;
       if (v.views) c.v = k1(v.views); if (v.likes) c.likes = k1(v.likes); if (v.duration) c.dur = v.duration; if (v.published) c.age = v.published.slice(0, 10); });
-    maxV = Math.max(...VC.map(c => num(c.v))); rank = VC.map(c => num(c.v)).map((n, i, arr) => 1 + arr.filter(m => m > n).length);
+    maxV = Math.max(...VC.map(c => num(c.v)));
     $$('.vcard .vw').forEach((el, i) => el.textContent = VC[i].v);
     if (vk >= 0) setClip(vk, true);
   }
