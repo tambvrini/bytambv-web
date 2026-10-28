@@ -196,9 +196,9 @@ const REELS = [
   ['img/dwt-r3.jpg', 'https://www.instagram.com/p/DYcRmqjoDaC/'], ['img/dwt-r4.jpg', 'https://www.instagram.com/p/DYkjbtGxXZ7/'],
   ['img/dwt-r5.jpg', 'https://www.instagram.com/p/DYwzUeUNcgE/']];
 const CUPRA_REELS = [
-  ['https://www.instagram.com/p/DYfGXyHMQnR/media/?size=l', 'https://www.instagram.com/p/DYfGXyHMQnR/?hl=es'],
-  ['https://www.instagram.com/p/DZ7fEtiM31Z/media/?size=l', 'https://www.instagram.com/p/DZ7fEtiM31Z/?hl=es'],
-  ['https://www.instagram.com/p/DaAyIntM6M0/media/?size=l', 'https://www.instagram.com/p/DaAyIntM6M0/?hl=es']
+  ['img/cupra-reel-02.png', 'https://www.instagram.com/p/DYfGXyHMQnR/?hl=es'],
+  ['img/cupra-reel-03.png', 'https://www.instagram.com/p/DZ7fEtiM31Z/?hl=es'],
+  ['img/cupra-reel-04.png', 'https://www.instagram.com/p/DaAyIntM6M0/?hl=es']
 ];
 const bst = $('.bst', bfly);
 const br = document.createElement('div'); br.className = 'branch'; br.setAttribute('aria-hidden', 'true');
@@ -209,7 +209,7 @@ const rls = $$('.rl', br), svg = $('.bl', br);
 let brOpen = false, brY = 0;
 function openBranch(tile) {
   const isCupra = tile.dataset.branch === 'cupra';
-  const active = isCupra ? [['img/cupra-spot.jpg', 'https://www.instagram.com/p/DbYPK5Rs0jF/?hl=es'], ...CUPRA_REELS] : REELS;
+  const active = isCupra ? [['img/cupra-reel-01.png', 'https://www.instagram.com/p/DbYPK5Rs0jF/?hl=es'], ...CUPRA_REELS] : REELS;
   rls.forEach((r, i) => { const d = active[i]; r.style.display = d ? '' : 'none'; if (d) { r.href = d[1]; $('img', r).src = d[0]; $('span', r).textContent = 'Reel ' + String(i + 1).padStart(2, '0') + ' ↗'; } });
   $('.bh span', br).textContent = isCupra ? 'CUPRA · RAVAL' : 'DWT4 · Jordi Wild';
   $('.bh b', br).textContent = active.length + ' reels';
