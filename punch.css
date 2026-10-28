@@ -146,7 +146,7 @@
 
 /* ---- underground background pass: keep clip colours, sharpen the environment ---- */
 #vfly,
-#bfly{--acc:#e56a83;--line:rgba(242,240,234,.22)}
+#bfly{--acc:#d51b3f;--line:rgba(242,240,234,.22)}
 #vfly .vst,
 #bfly .bst{background:#080808;isolation:isolate}
 #vfly .vst::after,
@@ -160,11 +160,11 @@
 #vfly .vst{background:radial-gradient(ellipse 72% 58% at 50% 45%,#252525,#050505 76%)}
 #bfly .bst{background:radial-gradient(ellipse 75% 65% at 50% 55%,#252525,#050505 82%)}
 #bfly .board .floor{background-image:linear-gradient(rgba(242,240,234,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(242,240,234,.12) 1px,transparent 1px)}
-#vfly .vbig b{color:#e56a83;text-shadow:0 10px 40px rgba(229,106,131,.22)}
-#vfly .meterL i{background:#e56a83}
-#vfly .vfeat{color:#e56a83}
-#vfly .vlist li.on button::before{background:#e56a83}
-#bfly .mg i.on{background:#e56a83}
+#vfly .vbig b{color:#d51b3f;text-shadow:0 10px 40px rgba(229,106,131,.22)}
+#vfly .meterL i{background:#d51b3f}
+#vfly .vfeat{color:#d51b3f}
+#vfly .vlist li.on button::before{background:#d51b3f}
+#bfly .mg i.on{background:#d51b3f}
 
 /* ---- brands: navigable 3D world map ---- */
 #tiles{display:none}
