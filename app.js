@@ -201,7 +201,9 @@ $$('.lang button').forEach(b => b.onclick = () => setLang(b.dataset.lang));
 /* ---------- hero: video through WebGL with a liquid cursor trail (Active Theory-style) ---------- */
 const video = $('#hv'); video.muted = true; const pv = video.play(); pv && pv.catch(() => { });
 (function heroGL() {
-  if (reduce || !window.THREE) return;
+  // Mobile browsers can kill the tab when WebGL, video and a fast fling
+  // overlap. Keep the original video path on small screens; desktop keeps GL.
+  if (reduce || innerWidth < 820 || !window.THREE) return;
   const canvas = $('#hgl'); let renderer;
   try { renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: 'high-performance' }); } catch (e) { return; }
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
