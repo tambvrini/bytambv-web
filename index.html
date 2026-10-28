@@ -11,16 +11,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Geist+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="app.css">
 <link rel="stylesheet" href="punch.css">
+<style id="page-in">@keyframes page-in{0%{opacity:0;filter:blur(18px);transform:scale(1.012)}55%{opacity:.82;filter:blur(5px);transform:scale(1.004)}100%{opacity:1;filter:blur(0);transform:scale(1)}}body{animation:page-in 1s cubic-bezier(.22,.8,.2,1) both;transform-origin:center top}@media (prefers-reduced-motion:reduce){body{animation-duration:.01ms}}</style>
 <meta property="og:title" content="TAMBV — Film, Music, Fashion">
 <meta property="og:image" content="/img/poster.jpg">
 <link rel="icon" href="/img/hf-avatar.jpg">
 </head>
 <body>
 
+
 <div id="grain" aria-hidden="true"></div>
+
 
 <div id="cur" aria-hidden="true"><span>PLAY</span></div>
 <div id="peek" aria-hidden="true"><img alt=""></div>
+
 
 <header class="bar">
   <a class="wm" href="#hero" data-scr>TAMBV</a>
@@ -29,127 +33,9 @@
   <button class="ix mono" id="ixb" aria-expanded="false" aria-controls="index"><span data-scr>Index</span><b><i></i><i></i></b></button>
 </header>
 
+
 <nav id="index" aria-label="Índice">
   <button class="close mono" id="ixc" data-en="Close ✕">Cerrar ✕</button>
   <ol>
     <li><a href="#music"><span class="n">INDX.01</span><span class="t" data-scr data-en="Music Videos">Videoclips</span></a></li>
     <li><a href="#brands"><span class="n">INDX.02</span><span class="t" data-scr>Brands</span></a></li>
-    <li><a href="#film"><span class="n">INDX.03</span><span class="t" data-scr>Film</span></a></li>
-    <li><a href="#merch"><span class="n">INDX.04</span><span class="t" data-scr>Merch</span></a></li>
-    <li><a href="#contact"><span class="n">INDX.05</span><span class="t" data-scr data-es="Contacto" data-en="Contact">Contacto</span></a></li>
-  </ol>
-  <div class="side mono" id="ixlinks"></div>
-</nav>
-
-<main>
-<section id="hero" aria-label="TAMBV">
-  <video id="hv" src="hero.mp4" poster="img/poster.jpg" muted loop playsinline autoplay preload="auto"></video>
-  <canvas id="hgl" aria-hidden="true"></canvas>
-  <div class="shade"></div>
-  <div class="top">
-    <h1 id="h1" aria-label="TAMBV"></h1>
-    <div class="role mono" data-en="Artist, Director, Producer, Barcelona">Artista, Director, Productor, Barcelona</div>
-  </div>
-  <div class="foot">
-    <nav class="soc" aria-label="Redes">
-      <a href="https://www.youtube.com/@TAMBV" target="_blank" rel="noopener" data-cur="IR"><span class="ic"><img src="soc/youtube-w.png" alt=""><img class="c" src="soc/youtube.png" alt=""></span><span class="tx"><b>YouTube</b><span class="mono"><em data-count="83000">83K</em> <span data-en="subscribers">suscriptores</span></span></span></a>
-      <a href="https://open.spotify.com/artist/05xmF2p7odRwlPQsQPnadk" target="_blank" rel="noopener" data-cur="IR"><span class="ic"><img src="soc/spotify-w.png" alt=""><img class="c" src="soc/spotify.png" alt=""></span><span class="tx"><b>Spotify</b><span class="mono" data-en="Listen now">Escuchar ahora</span></span></a>
-      <a href="https://www.instagram.com/tambv_/" target="_blank" rel="noopener" data-cur="IR"><span class="ic"><img src="soc/instagram-w.png" alt=""><img class="c" src="soc/instagram.png" alt=""></span><span class="tx"><b>Instagram</b><span class="mono"><em data-count="30000">30K</em> <span data-en="followers">seguidores</span></span></span></a>
-      <a href="https://claude.ai/artifact/S5MgZYPiKp5hU6JAMXiYNd" target="_blank" rel="noopener" data-cur="IR"><span class="ic pf">↗</span><span class="tx"><b>Portfolio</b><span class="mono" data-en="Work & brands">Trabajos y marcas</span></span></a>
-    </nav>
-    <span class="lema cond" id="lema" data-fit><span class="w">Film,</span> <span class="w">Music,</span> <span class="w">Fashion</span></span>
-  </div>
-</section>
-
-<section id="results" class="wrap">
-  <div class="stats">
-    <div><b class="cond" data-count="30000000" data-m>+30M</b><span class="mono" data-en="Organic views">Views orgánicas</span></div>
-    <div><b class="cond" data-count="83000">83K</b><span class="mono" data-en="YouTube subscribers">Suscriptores YouTube</span></div>
-    <div><b class="cond" data-count="30000">30K</b><span class="mono" data-en="Instagram followers">Seguidores Instagram</span></div>
-    <div><b class="cond">TOP 100</b><span class="mono">Higgsfield Film Festival</span></div>
-  </div>
-</section>
-
-<section id="music" class="wrap">
-  <div class="head raw"><figure class="god" aria-hidden="true"><img src="ph/god.jpg" alt="" loading="lazy"></figure><h2 class="cond big" data-cap data-en="Music Videos">Videoclips</h2><div class="marq hm" aria-label="Marcas"><div class="tr" id="marq"></div></div></div>
-  <ol class="rows" id="rows" hidden></ol>
-  <div class="vfly" id="vfly" aria-label="Videoclips"><div class="vst">
-    <div class="amb" aria-hidden="true"><img alt=""><img alt=""></div>
-    <div class="scene" id="vscene"><div class="space" id="vspace"></div></div>
-    <div class="strobe" id="strobe" aria-hidden="true"></div>
-    <div class="vtop">
-      <div class="vidx"><span class="cond vno" id="vno">01</span><span class="mono" id="vof">/ 08</span></div>
-      <div class="vbig"><span class="mono vlab" id="vlab">Views</span><b class="cond" id="vviews">0</b><span class="meterL"><i id="vmeter"></i></span><div class="vmeta mono" id="vmeta"></div></div>
-    </div>
-    <ol class="vlist mono" id="vlist"></ol>
-    <div class="vhud">
-      <div class="vl"><span class="mono vfeat" id="vfeat"></span><h3 class="cond vt" id="vt"></h3></div>
-      <a class="btn pri vplay" id="vplay" target="_blank" rel="noopener" data-cur="PLAY">Play ↗</a>
-    </div>
-    <div class="vprog"><i id="vprog"></i></div>
-  </div></div>
-  <div class="music-cta"><a class="btn pri" href="https://open.spotify.com/artist/05xmF2p7odRwlPQsQPnadk" target="_blank" rel="noopener" data-en="Listen on Spotify ↗">Escuchar en Spotify ↗</a><a class="btn" href="https://www.youtube.com/@TAMBV" target="_blank" rel="noopener" data-en="All music videos ↗">Todos los videoclips ↗</a></div>
-</section>
-
-<section id="brands" class="wrap">
-  <div class="head raw"><div class="collage"><figure class="rawph" data-r="-1" data-sp=".05" style="grid-column:1 / 6;grid-row:2 / 6" aria-hidden="true"><img src="ph/skate-d.jpg" alt="" loading="lazy"></figure><figure class="rawph dk" data-r="1.5" data-sp=".07" style="grid-column:6 / 8;grid-row:1 / 4" aria-hidden="true"><img src="ph/live-green-d.jpg" alt="" loading="lazy"></figure><figure class="rawph dk" data-r="-1" data-sp=".06" style="grid-column:6 / 8;grid-row:4 / 7" aria-hidden="true"><img src="ph/live-red-d.jpg" alt="" loading="lazy"></figure><figure class="rawph dk" data-r=".8" data-sp=".05" style="grid-column:8 / 11;grid-row:3 / 7" aria-hidden="true"><img src="ph/guitar-d.jpg" alt="" loading="lazy"></figure><figure class="rawph" data-r="1.2" data-sp=".07" style="grid-column:11 / 13;grid-row:1 / 5" aria-hidden="true"><img src="ph/portrait-d.jpg" alt="" loading="lazy"></figure></div><h2 class="cond big" data-cap>Brands</h2></div>
-  <div class="tiles" id="tiles"></div>
-  <div class="bfly" id="bfly" aria-label="Brands"><div class="bst">
-    <div class="bscene" id="bscene"><div class="board" id="board"></div></div>
-    <div class="bhud">
-      <div class="bl1"><span class="mono" id="bstep">Overview</span><b class="cond bname" id="bname"></b><span class="mono blab" id="blab"></span></div>
-      <div class="br1"><b class="cond bmet" id="bmet"></b><a class="btn pri bgo" id="bgo" target="_blank" rel="noopener" data-cur="VER"></a></div>
-    </div>
-    <div class="bmap" id="bmap" aria-hidden="true"></div><div class="btot"><b class="cond">+20M</b><span class="mono" data-en="views on brand work">views en trabajos para marcas</span></div>
-  </div></div>
-  </div></div>
-  <div class="more" id="more"></div>
-  
-  <div class="svc mono"><b data-en="Services">Servicios</b><span data-en="Music videos">Videoclips</span><span data-en="Ads & campaigns">Spots y campañas</span><span data-en="Event trailers">Trailers de eventos</span><span>Key visuals</span><span data-en="Film & anime">Cine y anime</span><span data-en="Viral reels">Reels virales</span></div>
-</section>
-
-<section id="film">
-  <div class="wrap"><div class="head"><h2 class="cond big" data-cap>Film</h2></div></div>
-  <div class="pin" id="fipin"><div class="st lb" id="filmst">
-    <div class="fr" id="frames"></div>
-    <div class="ov">
-      <div class="top"><h2>Girls / Demons</h2><div class="laurel"><svg class="lf" viewBox="0 0 40 100" aria-hidden="true"><path d="M31.6,10.6 L29.9,11.6 L28.2,12.7 L26.6,13.9 L25.1,15.2 L23.6,16.6 L22.2,18.1 L20.8,19.7 L19.6,21.4 L18.4,23.2 L17.3,25.0 L16.3,26.9 L15.4,28.9 L14.6,30.9 L14.0,32.9 L13.4,35.1 L12.9,37.2 L12.5,39.4 L12.2,41.6 L12.1,43.8 L12.0,46.0 L12.1,48.2 L12.2,50.4 L12.5,52.6 L12.9,54.8 L13.4,56.9 L14.0,59.1 L14.6,61.1 L15.4,63.1 L16.3,65.1 L17.3,67.0 L18.4,68.8 L19.6,70.6 L20.8,72.3 L22.2,73.9 L23.6,75.4 L25.1,76.8 L26.6,78.1 L28.2,79.3 L29.9,80.4 L31.6,81.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><g fill="currentColor"><ellipse cx="29.1" cy="7.3" rx="6.2" ry="2.6" transform="rotate(285 29.1 7.3)"/><ellipse cx="33.6" cy="13.2" rx="6.2" ry="2.6" transform="rotate(361 33.6 13.2)"/><ellipse cx="18.8" cy="15.9" rx="6.2" ry="2.6" transform="rotate(266 18.8 15.9)"/><ellipse cx="25.0" cy="20.0" rx="6.2" ry="2.6" transform="rotate(342 25.0 20.0)"/><ellipse cx="11.6" cy="27.7" rx="6.2" ry="2.6" transform="rotate(248 11.6 27.7)"/><ellipse cx="18.7" cy="29.7" rx="6.2" ry="2.6" transform="rotate(324 18.7 29.7)"/><ellipse cx="8.3" cy="41.3" rx="6.2" ry="2.6" transform="rotate(231 8.3 41.3)"/><ellipse cx="15.6" cy="41.2" rx="6.2" ry="2.6" transform="rotate(307 15.6 41.2)"/><ellipse cx="8.9" cy="55.4" rx="6.2" ry="2.6" transform="rotate(215 8.9 55.4)"/><ellipse cx="16.0" cy="53.2" rx="6.2" ry="2.6" transform="rotate(291 16.0 53.2)"/><ellipse cx="13.5" cy="68.4" rx="6.2" ry="2.6" transform="rotate(197 13.5 68.4)"/><ellipse cx="19.6" cy="64.2" rx="6.2" ry="2.6" transform="rotate(273 19.6 64.2)"/><ellipse cx="21.6" cy="79.1" rx="6.2" ry="2.6" transform="rotate(178 21.6 79.1)"/><ellipse cx="25.9" cy="73.1" rx="6.2" ry="2.6" transform="rotate(254 25.9 73.1)"/></g></svg><div class="lt"><span class="mono">Higgsfield Global Film Festival</span><b><span>Shortlist</span> <em data-en="Finalist">Finalista</em></b><span class="mono" data-en="Top 100 out of thousands of films">Top 100 entre miles de películas</span></div><svg class="lf r" viewBox="0 0 40 100" aria-hidden="true"><path d="M31.6,10.6 L29.9,11.6 L28.2,12.7 L26.6,13.9 L25.1,15.2 L23.6,16.6 L22.2,18.1 L20.8,19.7 L19.6,21.4 L18.4,23.2 L17.3,25.0 L16.3,26.9 L15.4,28.9 L14.6,30.9 L14.0,32.9 L13.4,35.1 L12.9,37.2 L12.5,39.4 L12.2,41.6 L12.1,43.8 L12.0,46.0 L12.1,48.2 L12.2,50.4 L12.5,52.6 L12.9,54.8 L13.4,56.9 L14.0,59.1 L14.6,61.1 L15.4,63.1 L16.3,65.1 L17.3,67.0 L18.4,68.8 L19.6,70.6 L20.8,72.3 L22.2,73.9 L23.6,75.4 L25.1,76.8 L26.6,78.1 L28.2,79.3 L29.9,80.4 L31.6,81.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><g fill="currentColor"><ellipse cx="29.1" cy="7.3" rx="6.2" ry="2.6" transform="rotate(285 29.1 7.3)"/><ellipse cx="33.6" cy="13.2" rx="6.2" ry="2.6" transform="rotate(361 33.6 13.2)"/><ellipse cx="18.8" cy="15.9" rx="6.2" ry="2.6" transform="rotate(266 18.8 15.9)"/><ellipse cx="25.0" cy="20.0" rx="6.2" ry="2.6" transform="rotate(342 25.0 20.0)"/><ellipse cx="11.6" cy="27.7" rx="6.2" ry="2.6" transform="rotate(248 11.6 27.7)"/><ellipse cx="18.7" cy="29.7" rx="6.2" ry="2.6" transform="rotate(324 18.7 29.7)"/><ellipse cx="8.3" cy="41.3" rx="6.2" ry="2.6" transform="rotate(231 8.3 41.3)"/><ellipse cx="15.6" cy="41.2" rx="6.2" ry="2.6" transform="rotate(307 15.6 41.2)"/><ellipse cx="8.9" cy="55.4" rx="6.2" ry="2.6" transform="rotate(215 8.9 55.4)"/><ellipse cx="16.0" cy="53.2" rx="6.2" ry="2.6" transform="rotate(291 16.0 53.2)"/><ellipse cx="13.5" cy="68.4" rx="6.2" ry="2.6" transform="rotate(197 13.5 68.4)"/><ellipse cx="19.6" cy="64.2" rx="6.2" ry="2.6" transform="rotate(273 19.6 64.2)"/><ellipse cx="21.6" cy="79.1" rx="6.2" ry="2.6" transform="rotate(178 21.6 79.1)"/><ellipse cx="25.9" cy="73.1" rx="6.2" ry="2.6" transform="rotate(254 25.9 73.1)"/></g></svg></div></div>
-      <div class="sub" id="sub"></div>
-      <div class="bot"><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn pri" href="https://www.youtube.com/watch?v=6CHHa0MNzxA" target="_blank" rel="noopener" data-cur="PLAY" data-en="Watch the film ↗">Ver la película ↗</a><a class="btn" href="https://www.youtube.com/watch?v=1E8WnKA8SsA" target="_blank" rel="noopener">Trailer</a><a class="btn" href="https://higgsfield.ai/@tambv/projects/girls-demons" target="_blank" rel="noopener">Higgsfield</a></div><span style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><a class="hfchip" href="https://higgsfield.ai/@tambv" target="_blank" rel="noopener"><img src="img/hf-avatar.jpg" alt="">@tambv · Higgsfield</a><span class="mono">7:47 · +290K views</span></span></div>
-    </div>
-    <div class="prog"><i id="fprog"></i></div>
-  </div></div>
-</section>
-
-<section id="merch">
-  <div class="wrap"><div class="head"><h2 class="cond big" data-cap>Merch</h2></div></div>
-  <div class="stage" id="stage" aria-roledescription="carrusel" aria-label="Prendas TAMBVRINI"></div>
-  <div class="info" aria-live="polite"><b id="pn"></b><span class="mono" id="pp"></span></div>
-  <div class="wheel" id="wheel" aria-label="Control del carrusel">
-    <a class="menu" href="https://www.tambvrini.com/tienda" target="_blank" rel="noopener">MENU</a>
-    <button class="prev" id="wprev" aria-label="Anterior">◀◀</button>
-    <button class="next" id="wnext" aria-label="Siguiente">▶▶</button>
-    <button class="pp" id="wpp" aria-label="Pausar o reproducir">▶❙❙</button>
-    <button class="ctr" id="wctr" aria-label="Ver prenda en TAMBVRINI"></button>
-  </div>
-  <div class="wrap merch-foot"><span class="mono" data-en="Spin the wheel · ◀◀ ▶▶">Gira la rueda · ◀◀ ▶▶</span><a class="btn pri" href="https://www.tambvrini.com/" target="_blank" rel="noopener" data-en="TAMBVRINI Store ↗">Tienda TAMBVRINI ↗</a></div>
-</section>
-
-<section id="contact" class="wrap">
-  <a class="big cond" data-fit href="https://www.instagram.com/tambv_/" target="_blank" rel="noopener">Booking ↗</a>
-  <div class="cgrid">
-    <div><span class="mono" data-en="Booking & brands">Booking y marcas</span><a class="mono" href="https://www.instagram.com/tambv_/" target="_blank" rel="noopener" data-scr>DM @tambv_</a><a class="mono" href="https://formamov.com/" target="_blank" rel="noopener" data-scr>FORMA.MOV ↗</a></div>
-    <div><span class="mono" data-en="Listen">Escuchar</span><a class="mono" href="https://open.spotify.com/artist/05xmF2p7odRwlPQsQPnadk" target="_blank" rel="noopener" data-scr>Spotify</a><a class="mono" href="https://www.youtube.com/@TAMBV" target="_blank" rel="noopener" data-scr>YouTube</a></div>
-    <div><span class="mono" data-en="Follow">Seguir</span><a class="mono" href="https://www.instagram.com/tambv_/" target="_blank" rel="noopener" data-scr>Instagram</a><a class="mono" href="https://higgsfield.ai/@tambv" target="_blank" rel="noopener" data-scr>Higgsfield</a></div>
-    <div><span class="mono" data-en="Universe">Universo</span><a class="mono" href="https://www.tambvrini.com/" target="_blank" rel="noopener" data-scr>TAMBVRINI</a><a class="mono" href="https://claude.ai/artifact/S5MgZYPiKp5hU6JAMXiYNd" target="_blank" rel="noopener" data-scr>Portfolio</a></div>
-  </div>
-  <div class="legal mono"><span>© 2026 TAMBV — Film, Music, Fashion</span><span id="clock">Barcelona</span></div>
-</section>
-</main>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="app.js"></script>
-<script src="punch.js"></script>
-
-</body>
-</html>
