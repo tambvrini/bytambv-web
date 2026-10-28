@@ -213,7 +213,7 @@ function openBranch(tile) {
   br.classList.remove('on'); void br.offsetWidth; br.classList.remove('ready'); br.classList.add('on'); bst.classList.add('br-on'); clearTimeout(br._t); br._t = setTimeout(() => br.classList.add('ready'), 1200); br.setAttribute('aria-hidden', 'false'); brOpen = true; brY = scrollY;
 }
 const closeBranch = () => { if (!brOpen) return; br.classList.remove('on'); bst.classList.remove('br-on'); br.setAttribute('aria-hidden', 'true'); brOpen = false; };
-board.addEventListener('click', e => { const t = e.target.closest('.bt[data-branch]'); if (!t) return; e.preventDefault(); e.stopPropagation(); if (!brOpen) openBranch(t); });
+board.addEventListener('click', e => { const t = e.target.closest('.bt[data-branch]'); if (!t) return; e.preventDefault(); e.stopPropagation(); if (!brOpen) { if (t.dataset.branch === 'cupra') openCupraBranch(t); else openBranch(t); } });
 $('.bx', br).onclick = closeBranch;
 br.addEventListener('click', e => { if (e.target === br || e.target === svg) closeBranch(); });
 addEventListener('keydown', e => { if (e.key === 'Escape') closeBranch(); if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.matches('.bt[data-branch]')) { e.preventDefault(); openBranch(document.activeElement); } });
@@ -285,3 +285,5 @@ function loop() {
 }
 requestAnimationFrame(loop);
 })();
+
+  
