@@ -27,9 +27,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 :focus-visible{outline:1px solid var(--acc);outline-offset:3px}
 
 /* grain + vignette over everything */
-#grain{position:fixed;inset:0;width:100vw;height:100vh;z-index:90;pointer-events:none;opacity:.24;background-size:150px 150px;background-repeat:repeat;mix-blend-mode:normal;animation:grain 1s steps(6) infinite}
+#grain{position:fixed;inset:0;width:100vw;height:100vh;z-index:1000;pointer-events:none;opacity:.16;background-size:150px 150px;background-repeat:repeat;mix-blend-mode:normal;animation:grain 1s steps(6) infinite}
 :root[data-theme="light"] #grain{opacity:.11;mix-blend-mode:multiply}
-@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-7%,4%)}40%{transform:translate(5%,-6%)}60%{transform:translate(-3%,8%)}80%{transform:translate(8%,2%)}100%{transform:translate(0,0)}}
+@keyframes grain{0%{background-position:0 0}20%{background-position:-7% 4%}40%{background-position:5% -6%}60%{background-position:-3% 8%}80%{background-position:8% 2%}100%{background-position:0 0}}
 
 /* header */
 .bar{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--pad);color:#ece9e3;mix-blend-mode:difference}
