@@ -222,9 +222,9 @@ addEventListener('scroll', () => { if (brOpen && Math.abs(scrollY - brY) > 120) 
 
 /* ---------- CUPRA: click the piece and its three reels branch out of it ---------- */
 const CUPRA_REELS = [
-  ['img/cupra-r1.jpg', 'https://www.instagram.com/p/DYfGXyHMQnR/?hl=es'],
-  ['img/cupra-r2.jpg', 'https://www.instagram.com/p/DZ7fEtiM31Z/?hl=es'],
-  ['img/cupra-r3.jpg', 'https://www.instagram.com/p/DaAyIntM6M0/?hl=es']
+  ['https://www.instagram.com/p/DYfGXyHMQnR/media/?size=l', 'https://www.instagram.com/p/DYfGXyHMQnR/?hl=es'],
+  ['https://www.instagram.com/p/DZ7fEtiM31Z/media/?size=l', 'https://www.instagram.com/p/DZ7fEtiM31Z/?hl=es'],
+  ['https://www.instagram.com/p/DaAyIntM6M0/media/?size=l', 'https://www.instagram.com/p/DaAyIntM6M0/?hl=es']
 ];
 const cr = document.createElement('div'); cr.className = 'branch'; cr.setAttribute('aria-hidden', 'true');
 cr.innerHTML = '<svg class="bl" aria-hidden="true"></svg><button class="bx mono" aria-label="Cerrar">✕</button><div class="bh"><span class="mono">CUPRA · RAVAL</span><b class="cond">3 reels</b></div>' + CUPRA_REELS.map((r, i) => '<a class="rl" href="' + r[1] + '" target="_blank" rel="noopener" data-cur="VER" style="--i:' + i + '"><img src="' + r[0] + '" alt="><span class="mono">Reel ' + String(i + 1).padStart(2, '0') + ' ↗</span></a>').join('');
