@@ -142,8 +142,10 @@ const mtxt = (b, en) => en && b.m === 'Campaña' ? 'Campaign' : b.m;
 const drawBoard = () => {
   const en = root.lang === 'en';
   board.innerHTML = '<span class="floor"></span>' + BT.map(b => { const tx = en ? b.en : b.es, nm = tx.split(' — ')[0];
-    const isBranch = b.g === 'b' || b.g === 'e'; const tag = isBranch ? 'div' : 'a';
-    return `<${tag} class="bt"${isBranch ? ` data-branch="${b.g === 'e' ? 'cupra' : 'dwt'}" role="button" tabindex="0" data-cur="${b.g === 'e' ? '+4' : '+5'}"` : ` href="${b.url}" target="_blank" rel="noopener" data-cur="VER"`} style="grid-area:${b.g}"><img src="${b.img}" alt="${nm}" loading="lazy"><span class="sh"></span>${b.logo ? `<img class="lg" src="${b.logo}" alt="">` : ''}${b.g === 'b' ? `<span class="brk mono">+5 reels ✦ ${en ? 'click' : 'click'}</span>` : b.g === 'e' ? `<span class="brk mono">+4 reels ✦ ${en ? 'click' : 'click'}</span>` : ''}<span class="mt"><b class="cond">${mtxt(b, en)}</b><span class="mono">${nm}</span></span></${tag}>`; }).join('');
+    const isBranch = b.g === 'a' || b.g === 'b' || b.g === 'e'; const tag = isBranch ? 'div' : 'a';
+    const branch = b.g === 'a' ? 'velada' : b.g === 'e' ? 'cupra' : 'dwt';
+    const branchCount = b.g === 'a' ? 3 : b.g === 'e' ? 4 : 5;
+    return `<${tag} class="bt"${isBranch ? ` data-branch="${branch}" role="button" tabindex="0" data-cur="+${branchCount}"` : ` href="${b.url}" target="_blank" rel="noopener" data-cur="VER"`} style="grid-area:${b.g}"><img src="${b.img}" alt="${nm}" loading="lazy"><span class="sh"></span>${b.logo ? `<img class="lg" src="${b.logo}" alt="">` : ''}${isBranch ? `<span class="brk mono">+${branchCount} reels ✦ ${en ? 'click' : 'click'}</span>` : ''}<span class="mt"><b class="cond">${mtxt(b, en)}</b><span class="mono">${nm}</span></span></${tag}>`; }).join('');
   bmap.innerHTML = '<div class="mg">' + BT.map(b => `<i style="grid-area:${b.g}"></i>`).join('') + '</div><span class="mono">Map</span>';
   bk2 = -2;
 };
@@ -199,6 +201,11 @@ const CUPRA_REELS = [
   ['img/cupra-reel-03.png', 'https://www.instagram.com/p/DZ7fEtiM31Z/?hl=es'],
   ['img/cupra-reel-04.png', 'https://www.instagram.com/p/DaAyIntM6M0/?hl=es']
 ];
+const VELADA_REELS = [
+  ['img/velada-reel-01.png', 'https://www.instagram.com/p/Da72bCOtkdN/?hl=es'],
+  ['img/velada-reel-02.png', 'https://www.instagram.com/p/DbGQuN5Ix_g/?hl=es'],
+  ['img/velada-reel-03.png', 'https://www.instagram.com/p/DbLZh6BNsEz/?hl=es']
+];
 const bst = $('.bst', bfly);
 const br = document.createElement('div'); br.className = 'branch'; br.setAttribute('aria-hidden', 'true');
 br.innerHTML = `<svg class="bl" aria-hidden="true"></svg><button class="bx mono" aria-label="Cerrar">✕</button><div class="bh"><span class="mono">DWT4 · Jordi Wild</span><b class="cond">5 reels</b></div>` +
@@ -207,15 +214,17 @@ bst.appendChild(br);
 const rls = $$('.rl', br), svg = $('.bl', br);
 let brOpen = false, brY = 0;
 function openBranch(tile) {
-  const isCupra = tile.dataset.branch === 'cupra';
-  const active = isCupra ? [['img/cupra-reel-01.png', 'https://www.instagram.com/p/DbYPK5Rs0jF/?hl=es'], ...CUPRA_REELS] : REELS;
+  const branchName = tile.dataset.branch;
+  const isCupra = branchName === 'cupra', isVelada = branchName === 'velada';
+  const active = isVelada ? VELADA_REELS : isCupra ? [['img/cupra-reel-01.png', 'https://www.instagram.com/p/DbYPK5Rs0jF/?hl=es'], ...CUPRA_REELS] : REELS;
   rls.forEach((r, i) => { const d = active[i]; r.style.display = d ? '' : 'none'; if (d) { r.href = d[1]; $('img', r).src = d[0]; $('span', r).textContent = 'Reel ' + String(i + 1).padStart(2, '0') + ' ↗'; } });
-  $('.bh span', br).textContent = isCupra ? 'CUPRA · RAVAL' : 'DWT4 · Jordi Wild';
+  $('.bh span', br).textContent = isVelada ? 'LA VELADA DEL AÑO VI' : isCupra ? 'CUPRA · RAVAL' : 'DWT4 · Jordi Wild';
   $('.bh b', br).textContent = active.length + ' reels';
   const S = bst.getBoundingClientRect(), T = tile.getBoundingClientRect();
   const ox0 = T.left + T.width / 2 - S.left, oy0 = T.top + T.height / 2 - S.top, W = S.width, H = S.height, mob = W < 820;
   const cw = mob ? W * .27 : Math.min(W * .14, 230), ch = cw * 16 / 10;
-  const pts = rls.map((_, i) => { const u = (i - 2) / 2; return mob ? { x: W / 2 + (i % 3 - 1) * cw * 1.12, y: H * (i < 3 ? .36 : .66) } : { x: W / 2 + (i - 2) * cw * 1.2, y: H * .56 - Math.abs(u) * 30 }; });
+  const count = active.length;
+  const pts = rls.map((_, i) => { const mid = (count - 1) / 2, u = (i - mid) / Math.max(1, mid); return mob ? { x: W / 2 + (i - mid) * cw * 1.12, y: H * (i < 3 ? .36 : .66) } : { x: W / 2 + (i - mid) * cw * 1.2, y: H * .56 - Math.abs(u) * 30 }; });
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   svg.innerHTML = pts.map((p, i) => { const mx = (ox0 + p.x) / 2, my = Math.min(oy0, p.y) - 80; return `<path d="M${ox0},${oy0} Q${mx},${my} ${p.x},${p.y - ch / 2}" style="--d:${i * 70}ms" pathLength="1"/>`; }).join('') + `<circle cx="${ox0}" cy="${oy0}" r="5"/>`;
   rls.forEach((r, i) => { r.style.width = cw + 'px'; r.style.height = ch + 'px'; r.style.setProperty('--fx', (ox0 - pts[i].x) + 'px'); r.style.setProperty('--fy', (oy0 - pts[i].y) + 'px'); r.style.left = (pts[i].x - cw / 2) + 'px'; r.style.top = (pts[i].y - ch / 2) + 'px'; });
