@@ -195,6 +195,11 @@ const REELS = [
   ['img/dwt-r1.jpg', 'https://www.instagram.com/p/DWovKYrDiAG/'], ['img/dwt-r2.jpg', 'https://www.instagram.com/p/DYPmr6nIoly/'],
   ['img/dwt-r3.jpg', 'https://www.instagram.com/p/DYcRmqjoDaC/'], ['img/dwt-r4.jpg', 'https://www.instagram.com/p/DYkjbtGxXZ7/'],
   ['img/dwt-r5.jpg', 'https://www.instagram.com/p/DYwzUeUNcgE/']];
+const CUPRA_REELS = [
+  ['https://www.instagram.com/p/DYfGXyHMQnR/media/?size=l', 'https://www.instagram.com/p/DYfGXyHMQnR/?hl=es'],
+  ['https://www.instagram.com/p/DZ7fEtiM31Z/media/?size=l', 'https://www.instagram.com/p/DZ7fEtiM31Z/?hl=es'],
+  ['https://www.instagram.com/p/DaAyIntM6M0/media/?size=l', 'https://www.instagram.com/p/DaAyIntM6M0/?hl=es']
+];
 const bst = $('.bst', bfly);
 const br = document.createElement('div'); br.className = 'branch'; br.setAttribute('aria-hidden', 'true');
 br.innerHTML = `<svg class="bl" aria-hidden="true"></svg><button class="bx mono" aria-label="Cerrar">✕</button><div class="bh"><span class="mono">DWT4 · Jordi Wild</span><b class="cond">5 reels</b></div>` +
@@ -203,6 +208,11 @@ bst.appendChild(br);
 const rls = $$('.rl', br), svg = $('.bl', br);
 let brOpen = false, brY = 0;
 function openBranch(tile) {
+  const isCupra = tile.dataset.branch === 'cupra';
+  const active = isCupra ? [['img/cupra-spot.jpg', 'https://www.instagram.com/p/DbYPK5Rs0jF/?hl=es'], ...CUPRA_REELS] : REELS;
+  rls.forEach((r, i) => { const d = active[i]; r.style.display = d ? '' : 'none'; if (d) { r.href = d[1]; $('img', r).src = d[0]; $('span', r).textContent = 'Reel ' + String(i + 1).padStart(2, '0') + ' ↗'; } });
+  $('.bh span', br).textContent = isCupra ? 'CUPRA · RAVAL' : 'DWT4 · Jordi Wild';
+  $('.bh b', br).textContent = active.length + ' reels';
   const S = bst.getBoundingClientRect(), T = tile.getBoundingClientRect();
   const ox0 = T.left + T.width / 2 - S.left, oy0 = T.top + T.height / 2 - S.top, W = S.width, H = S.height, mob = W < 820;
   const cw = mob ? W * .27 : Math.min(W * .14, 230), ch = cw * 16 / 10;
@@ -218,38 +228,7 @@ $('.bx', br).onclick = closeBranch;
 br.addEventListener('click', e => { if (e.target === br || e.target === svg) closeBranch(); });
 addEventListener('keydown', e => { if (e.key === 'Escape') closeBranch(); if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.matches('.bt[data-branch]')) { e.preventDefault(); openBranch(document.activeElement); } });
 addEventListener('scroll', () => { if (brOpen && Math.abs(scrollY - brY) > 120) closeBranch(); }, { passive: true });
-/* ---------- brand branches: click the piece and its reels branch out of it ---------- */
-const REELS = [
-  ['img/dwt-r1.jpg', 'https://www.instagram.com/p/DWovKYrDiAG/'], ['img/dwt-r2.jpg', 'https://www.instagram.com/p/DYPmr6nIoly/'],
-  ['img/dwt-r3.jpg', 'https://www.instagram.com/p/DYcRmqjoDaC/'], ['img/dwt-r4.jpg', 'https://www.instagram.com/p/DYkjbtGxXZ7/'],
-  ['img/dwt-r5.jpg', 'https://www.instagram.com/p/DYwzUeUNcgE/']];
-const CUPRA_REELS = [
-  ['img/cupra-spot.jpg', 'https://www.instagram.com/p/DbYPK5Rs0jF/?hl=es'],
-  ['https://www.instagram.com/p/DYfGXyHMQnR/media/?size=l', 'https://www.instagram.com/p/DYfGXyHMQnR/?hl=es'],
-  ['https://www.instagram.com/p/DZ7fEtiM31Z/media/?size=l', 'https://www.instagram.com/p/DZ7fEtiM31Z/?hl=es'],
-  ['https://www.instagram.com/p/DaAyIntM6M0/media/?size=l', 'https://www.instagram.com/p/DaAyIntM6M0/?hl=es']
-];
-const bst = $('.bst', bfly), br = document.createElement('div'); br.className = 'branch'; br.setAttribute('aria-hidden', 'true'); bst.appendChild(br);
-let brOpen = false, brY = 0;
-function openBranch(tile) {
-  const reels = tile.dataset.branch === 'cupra' ? CUPRA_REELS : REELS;
-  const name = tile.dataset.branch === 'cupra' ? 'CUPRA · RAVAL' : 'DWT4 · Jordi Wild';
-  br.innerHTML = '<svg class="bl" aria-hidden="true"></svg><button class="bx mono" aria-label="Cerrar">✕</button><div class="bh"><span class="mono">' + name + '</span><b class="cond">' + reels.length + ' reels</b></div>' + reels.map((r, i) => '<a class="rl' + (tile.dataset.branch === 'cupra' && i === 0 ? ' main' : '') + '" href="' + r[1] + '" target="_blank" rel="noopener" data-cur="VER" style="--i:' + i + '"><img src="' + r[0] + '" alt=""><span class="mono">Reel ' + String(i + 1).padStart(2, '0') + ' ↗</span></a>').join('');
-  const rls = $('.rl', br), svg = $('.bl', br), S = bst.getBoundingClientRect(), T = tile.getBoundingClientRect();
-  const ox0 = T.left + T.width / 2 - S.left, oy0 = T.top + T.height / 2 - S.top, W = S.width, H = S.height, mob = W < 820;
-  const cw = mob ? W * .27 : Math.min(W * .14, 230), ch = cw * 16 / 10;
-  const pts = rls.map((_, i) => { const u = (i - (rls.length - 1) / 2) / Math.max(1, (rls.length - 1) / 2); return mob ? { x: W / 2 + (i % 3 - 1) * cw * 1.12, y: H * (i < 3 ? .36 : .66) } : { x: W / 2 + (i - (rls.length - 1) / 2) * cw * 1.2, y: H * .56 - Math.abs(u) * 30 }; });
-  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-  svg.innerHTML = pts.map((p, i) => { const mx = (ox0 + p.x) / 2, my = Math.min(oy0, p.y) - 80; return '<path d="M' + ox0 + ',' + oy0 + ' Q' + mx + ',' + my + ' ' + p.x + ',' + (p.y - ch / 2) + '" style="--d:' + (i * 70) + 'ms" pathLength="1"/>'; }).join('') + '<circle cx="' + ox0 + '" cy="' + oy0 + '" r="5"/>';
-  rls.forEach((r, i) => { r.style.width = cw + 'px'; r.style.height = ch + 'px'; r.style.setProperty('--fx', (ox0 - pts[i].x) + 'px'); r.style.setProperty('--fy', (oy0 - pts[i].y) + 'px'); r.style.left = (pts[i].x - cw / 2) + 'px'; r.style.top = (pts[i].y - ch / 2) + 'px'; });
-  br.classList.remove('on'); void br.offsetWidth; br.classList.remove('ready'); br.classList.add('on'); bst.classList.add('br-on'); clearTimeout(br._t); br._t = setTimeout(() => br.classList.add('ready'), 1200); br.setAttribute('aria-hidden', 'false'); brOpen = true; brY = scrollY;
-}
-const closeBranch = () => { if (!brOpen) return; br.classList.remove('on'); bst.classList.remove('br-on'); br.setAttribute('aria-hidden', 'true'); brOpen = false; };
-board.addEventListener('click', e => { const t = e.target.closest('.bt[data-branch]'); if (!t) return; e.preventDefault(); e.stopPropagation(); if (!brOpen) openBranch(t); });
-br.addEventListener('click', e => { if (e.target === br || e.target === $('.bl', br)) closeBranch(); });
-br.addEventListener('click', e => { if (e.target.closest('.bx')) closeBranch(); });
-addEventListener('keydown', e => { if (e.key === 'Escape') closeBranch(); if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.matches('.bt[data-branch]')) { e.preventDefault(); openBranch(document.activeElement); } });
-addEventListener('scroll', () => { if (brOpen && Math.abs(scrollY - brY) > 120) closeBranch(); }, { passive: true });
+
 
 /* ---------- live numbers: /api/stats (YouTube Data API, refreshed daily on the server) ---------- */
 const k1 = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M' : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/, '') + 'K' : String(n);
