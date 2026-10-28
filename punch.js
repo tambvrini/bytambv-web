@@ -5,18 +5,9 @@ const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const root = document.documentElement;
 
-/* ---------- intro: strobe the name, then the shutter opens on the video ---------- */
+/* ---------- intro disabled: show the hero immediately ---------- */
 const intro = $('#intro');
-let seen = false; try { seen = sessionStorage.getItem('tambv-intro') === '1'; } catch (e) { }
-if (reduce || seen) intro.classList.add('done');
-else {
-  root.classList.add('intro-on');
-  const itc = $('#itc'), t0 = performance.now(), p2 = n => String(n).padStart(2, '0');
-  const tc = () => { const s = (performance.now() - t0) / 1000; itc.textContent = `00:00:${p2(Math.floor(s))}:${p2(Math.floor(s * 24) % 24)}`; if (!intro.classList.contains('go')) requestAnimationFrame(tc); };
-  requestAnimationFrame(tc);
-  const open = () => { if (intro.classList.contains('go')) return; intro.classList.add('go'); root.classList.remove('intro-on'); setTimeout(() => intro.classList.add('done'), 950); try { sessionStorage.setItem('tambv-intro', '1'); } catch (e) { } };
-  intro.addEventListener('click', open); setTimeout(open, 1250);
-}
+if (intro) intro.classList.add('done');
 
 /* ---------- hero: lema words split apart, TAMBV letters spread as you scroll away ---------- */
 const hero = $('#hero'), lw = $$('#lema .w'), ll = $$('#h1 span');
