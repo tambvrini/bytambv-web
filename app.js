@@ -22,7 +22,7 @@ const TILES = [
   { k: 'reel', b: 'UFC 330', logo: null, m: '1M', l: 'Views · Makhachev vs Machado Garry', le: 'Views · Makhachev vs Machado Garry', img: 'ufc', url: 'https://www.instagram.com/reel/Db3ZLAoNhxH/', g: 'c' },
   { k: 'reel', b: 'ProShake', logo: null, m: 'Concept', l: 'Film estilo Nike · con FORMA', le: 'Nike-style film · with FORMA', img: 'proshake', url: 'https://www.instagram.com/reel/DbVrgtGs2ev/', g: 'd' },
   { k: 'wide', b: 'CUPRA', logo: null, nologo: 1, m: 'Spot', l: 'Spot oficial · Cupra × TAMBV', le: 'Official ad · Cupra × TAMBV', img: 'cupra-spot', url: 'https://www.instagram.com/reel/DbYPK5Rs0jF/', g: 'e' },
-  { k: 'wide', b: 'The Wild Project', logo: 'thewildproject', m: 'Intro', l: 'Intro y logo animado oficial', le: 'Official intro & animated logo', img: 'wildproject', url: 'https://www.instagram.com/tambv_/', g: 'f' },
+  { k: 'wide', b: 'The Wild Project', logo: 'thewildproject', m: 'Intro', l: 'Intro y logo animado oficial', le: 'Official intro & animated logo', img: 'wildproject', url: 'https://www.youtube.com/c/TheWildProject', g: 'f' },
   { k: 'wide', b: 'Duelbits', logo: null, nologo: 1, m: 'Campaña', l: 'Campaña oficial con IA', le: 'Official AI campaign', img: 'duelbits-w', url: 'https://x.com/Duelbits/status/2102356501704929401', g: 'g' },
   { k: 'wide', b: 'MSA · Hot Car', logo: null, nologo: 1, m: 'Anime', l: 'Proyecto anime para MSA', le: 'Anime project for MSA', img: 'hotcar', url: 'https://higgsfield.ai/@tambv/projects/hot-car-msa', g: 'h' },
   { k: 'wide', b: 'Stake', logo: null, nologo: 1, m: 'Spot', l: 'Campaña oficial', le: 'Official campaign', img: 'stake-w', url: 'https://www.instagram.com/p/DdR5zVRySwu/', g: 'i' },
