@@ -252,6 +252,13 @@ fetch('/api/stats').then(r => r.ok ? r.json() : null).then(d => {
   }
 }).catch(() => { });
 
+/* ---------- live Instagram followers (professional account, with fallback) ---------- */
+const instagramFmt = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M' : n >= 1e3 ? Math.round(n / 1e3) + 'K' : String(n);
+fetch('/api/instagram').then(r => r.ok ? r.json() : null).then(d => {
+  if (!d || typeof d.followers !== 'number') return;
+  $$('[data-live="instagram-followers"]').forEach(el => { el.dataset.count = d.followers; el.textContent = instagramFmt(d.followers); });
+}).catch(() => { });
+
 /* ---------- one loop for scroll-driven bits ---------- */
 function loop() {
   const y = scrollY; vel += ((y - lastY) - vel) * .12; lastY = y;
