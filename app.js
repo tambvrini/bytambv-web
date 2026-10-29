@@ -97,7 +97,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape') setIx(false); });
 const fmt = (n, el) => el.hasAttribute('data-m') ? '+' + Math.round(n / 1e6) + 'M' : el.hasAttribute('data-full') ? Math.round(n).toLocaleString('es-ES') : n >= 1000 ? Math.round(n / 1000) + 'K' : Math.round(n);
 function count(el) { const to = +el.dataset.count, t0 = performance.now(), D = 1600; const step = t => { const k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 4); el.textContent = fmt(to * e, el); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
 $$('[data-cap]').forEach(el => { el.innerHTML = el.textContent.trim().split(/\s+/).map((w, i) => `<span class="w"><i style="transition-delay:${i * 70}ms">${w}</i></span>`).join(' '); });
-const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const t = e.target; t.classList.add('on'); if (t.dataset.count) count(t); io.unobserve(t); }), { threshold: .25 });
+const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const t = e.target; t.classList.add('on'); if (t.dataset.count && !t.dataset.live) count(t); io.unobserve(t); }), { threshold: .25 });
 $$('[data-cap],[data-rv],[data-count]').forEach(el => io.observe(el));
 
 /* ---------- timecode + clock ---------- */
