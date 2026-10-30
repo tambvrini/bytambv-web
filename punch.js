@@ -155,7 +155,7 @@ function setFocus(k) {
   bk2 = k; const en = root.lang === 'en', tiles = $$('.bt', board), mi = $$('.mg i', bmap);
   tiles.forEach((t, i) => t.classList.toggle('on', i === k)); mi.forEach((t, i) => t.classList.toggle('on', i === k));
   bscene.classList.toggle('focus', k >= 0);
-  if (k < 0) { ++bcu; bstep.textContent = en ? `Overview · ${NB} brands` : `Vista general · ${NB} marcas`; bname.textContent = en ? 'Brand work' : 'Trabajos para marcas'; blab.textContent = en ? 'Scroll to fly in' : 'Haz scroll para entrar'; bmet.textContent = '+20M'; bgo.style.visibility = 'hidden'; return; }
+  if (k < 0) { ++bcu; bstep.textContent = en ? `Overview · ${NB} brands` : `Vista general · ${NB} marcas`; bname.textContent = ''; blab.textContent = en ? 'Scroll to fly in' : 'Haz scroll para entrar'; bmet.textContent = '+20M'; bgo.style.visibility = 'hidden'; return; }
   const b = BT[k], tx = en ? b.en : b.es;
   bstep.textContent = `${String(k + 1).padStart(2, '0')} / ${String(NB).padStart(2, '0')}`;
   bname.textContent = tx.split(' — ')[0]; blab.textContent = tx.split(' — ').slice(1).join(' — ');
