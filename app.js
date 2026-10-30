@@ -204,7 +204,7 @@ const video = $('#hv'); video.muted = true; const pv = video.play(); pv && pv.ca
   if (reduce || !window.THREE) return;
   const canvas = $('#hgl'); let renderer;
   try { renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: 'high-performance' }); } catch (e) { return; }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 820 ? 1 : 1.5));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 820 || matchMedia('(pointer:coarse)').matches ? 1 : 1.5));
   const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1), quad = new THREE.PlaneGeometry(2, 2);
   const TW = 192, TH = 108, opts = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, depthBuffer: false };
   let rtA = new THREE.WebGLRenderTarget(TW, TH, opts), rtB = new THREE.WebGLRenderTarget(TW, TH, opts);

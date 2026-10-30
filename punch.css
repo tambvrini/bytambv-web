@@ -240,7 +240,7 @@
 .bt[data-branch]{cursor:pointer}
 
 /* mobile: lighter GPU load */
-@media (max-width:820px){.amb img{filter:blur(36px) saturate(1.2)}.vcard{box-shadow:none}.bt{box-shadow:none}}
+@media (max-width:820px),(pointer:coarse){.amb img{filter:blur(36px) saturate(1.2)}.vcard{box-shadow:none}.bt{box-shadow:none}#grain{animation:none}.space,.board{will-change:auto}}
 
 /* ---- compact v3: titles live inside their sections, no dead gaps ---- */
 #results{position:relative;overflow:hidden;padding-block:clamp(14px,2.4vh,26px) 0;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad)}
