@@ -22,7 +22,7 @@ $$('.lang button').forEach(b => b.addEventListener('click', () => setTimeout(() 
 $$('#index li .t').forEach(t => t.addEventListener('pointerenter', () => { if (!reduce) t.innerHTML = breakWord(t.dataset.raw || t.textContent); }));
 
 /* glitch slices: big titles fire a short glitch when they come in, then now and then */
-const GL = ['#brands .head h2', '.vsec', '#film h2'];
+const GL = ['.bsec', '.vsec', '#film h2'];
 /* hero: hand-made spiky TAMBV logo instead of typed letters */
 const h1 = $('#h1'); if (h1) h1.innerHTML = '<img class="hlogo" src="img/logo-tambv.webp" alt="TAMBV" width="1800" height="349" decoding="async" fetchpriority="high">';
 const gls = [];
