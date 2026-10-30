@@ -252,8 +252,13 @@ addEventListener('scroll', () => { if (brOpen && Math.abs(scrollY - brY) > 120) 
 
 /* ---------- live numbers: /api/stats (YouTube Data API, refreshed daily on the server) ---------- */
 const k1 = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M' : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/, '') + 'K' : String(n);
+/* total followers = live YouTube + live Instagram (30K fallback) + Spotify (~1.5K), floored to the thousand */
+const FOL = { yt: 84300, ig: 30000, sp: 1500 };
+const paintFollowers = () => { const t = FOL.yt + FOL.ig + FOL.sp; $$('[data-total-followers]').forEach(el => el.textContent = '+' + (t >= 1e6 ? (Math.floor(t / 1e5) / 10).toString() + 'M' : Math.floor(t / 1e3) + 'K')); };
+paintFollowers();
 fetch('/api/stats').then(r => r.ok ? r.json() : null).then(d => {
   if (!d) return;
+  if (d.channel && d.channel.subscribers) { FOL.yt = d.channel.subscribers; paintFollowers(); }
   if (d.channel && d.channel.subscribers) $$('[data-count="80000"],[data-count="83000"]').forEach(el => { el.dataset.count = d.channel.subscribers; el.textContent = k1(d.channel.subscribers); });
   if (d.videos) {
     VC.forEach(c => { const id = (c.url.match(/[?&]v=([\w-]{11})/) || [])[1], v = id && d.videos[id]; if (!v) return;
@@ -269,6 +274,7 @@ const instagramFmt = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace
 fetch('/api/instagram').then(r => r.ok ? r.json() : null).then(d => {
   if (!d || typeof d.followers !== 'number') return;
   $$('[data-live="instagram-followers"]').forEach(el => { el.dataset.count = d.followers; el.textContent = instagramFmt(d.followers); });
+  FOL.ig = d.followers; paintFollowers();
 }).catch(() => { });
 
 /* ---------- one loop for scroll-driven bits ---------- */
