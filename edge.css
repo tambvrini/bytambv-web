@@ -73,11 +73,11 @@
 
 /* ---------- hand-made title images (Higgsfield) ---------- */
 .ttl-img{margin:0;line-height:0}
-.ttl-img img{display:block;width:clamp(280px,58vw,980px);height:auto;-webkit-user-drag:none;user-select:none}
+.ttl-img img{display:block;width:clamp(240px,42vw,700px);height:auto;-webkit-user-drag:none;user-select:none}
 #merch .head{padding-top:clamp(40px,6.5vh,72px);padding-bottom:clamp(20px,3vh,32px)}
 #merch .stage{margin-top:clamp(12px,2.4vh,28px)}
 #merch .ht-edge,.ht-edge + #merch{margin-top:0}
-@media (max-width:820px){.ttl-img img{width:88vw}#merch .head{padding-top:32px;padding-bottom:16px}}
+@media (max-width:820px){.ttl-img img{width:70vw}#merch .head{padding-top:32px;padding-bottom:16px}}
 #merch .stage{height:min(44svh,430px)}
 #merch .item{top:50%}
 #merch .info{min-height:0;margin-top:clamp(0px,1vh,10px)}
