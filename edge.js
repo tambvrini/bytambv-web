@@ -22,7 +22,7 @@ $$('.lang button').forEach(b => b.addEventListener('click', () => setTimeout(() 
 $$('#index li .t').forEach(t => t.addEventListener('pointerenter', () => { if (!reduce) t.innerHTML = breakWord(t.dataset.raw || t.textContent); }));
 
 /* glitch slices: big titles fire a short glitch when they come in, then now and then */
-const GL = ['#merch .head h2', '#brands .head h2', '#film h2', '#hero h1'];
+const GL = ['#merch .head h2', '#brands .head h2', '.vsec', '#film h2', '#hero h1'];
 const gls = [];
 GL.forEach(sel => $$(sel).forEach(el => { el.classList.add('glx'); el.dataset.g = el.textContent.trim(); gls.push(el); }));
 const fire = el => { if (reduce) return; el.dataset.g = el.textContent.trim(); el.classList.remove('fire'); void el.offsetWidth; el.classList.add('fire'); };
