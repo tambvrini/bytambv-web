@@ -129,7 +129,7 @@ function vloop(vel, now) {
   const camY = -vf * STEP + ox * 16 + drift;
   verts.forEach(v => { const j = +v.dataset.j, y = j * VG, dj = Math.abs(j / 3 - vf), sw = 1 + clamp(1 - dj, 0, 1) * .25; v.style.transform = `translate(-50%,-50%) translateY(${y}px) rotateY(${-camY}deg) scale(${sw})`; v.style.opacity = clamp(1 - dj / 4, .05, 1).toFixed(2); });
   const sv = clamp(Math.abs(vel) * .3, 0, 8);
-  vscene.style.filter = sv > .3 ? `drop-shadow(${sv}px 0 0 rgba(255,40,80,.4)) drop-shadow(${-sv}px 0 0 rgba(60,255,220,.4))` : 'none';
+  vscene.style.filter = sv > .3 ? `drop-shadow(${sv}px 0 0 rgba(31,156,136,.45)) drop-shadow(${-sv}px 0 0 rgba(0,0,0,.6))` : 'none';
   vbar.style.transform = `scaleX(${p})`;
 }
 
