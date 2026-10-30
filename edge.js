@@ -39,3 +39,16 @@ const merch = $('#merch'), contact = $('#contact');
 if (merch) edge(merch);
 if (contact && contact.previousElementSibling !== merch) edge(contact);
 })();
+
+/* top bar: fixed colours (no difference-blend pink). White over the hero, teal mark after it, ink over the paper sections */
+(() => {
+  const bar = document.querySelector('.bar'), hero = document.getElementById('hero');
+  const papers = ['merch', 'contact'].map(id => document.getElementById(id)).filter(Boolean);
+  if (!bar) return;
+  const upd = () => {
+    const h = bar.offsetHeight / 2;
+    bar.classList.toggle('past', !!hero && hero.getBoundingClientRect().bottom < h);
+    bar.classList.toggle('paper', papers.some(p => { const r = p.getBoundingClientRect(); return r.top < h && r.bottom > h; }));
+  };
+  addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+})();
