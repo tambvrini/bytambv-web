@@ -1,0 +1,72 @@
+/* v4 · edge layer: alt / underground touches on top of the base.
+   Compressed broken type (Six Caps), terminal pixel labels (VT323), glitch slices,
+   halftone transitions and a few white "paper" moments. Remove this file + edge.js to revert. */
+:root{--comp:"Six Caps",var(--cond);--pix:"VT323",var(--mono);--paperW:#ecebe6;--inkK:#0b0c0c}
+
+/* ---------- INDEX: white paper, compressed broken type (BMTH-style) ---------- */
+#index{background:var(--paperW);color:var(--inkK);-webkit-backdrop-filter:none;backdrop-filter:none;grid-template-columns:1fr;justify-items:center;padding-top:clamp(70px,10vh,110px)}
+#index::before{content:"";position:absolute;inset:0;background-image:var(--noise);background-size:200px;opacity:.16;mix-blend-mode:multiply;pointer-events:none}
+#index ol{position:relative;gap:clamp(2px,.8vh,10px);width:min(92vw,720px)}
+#index li a{display:grid;grid-template-columns:1fr auto;align-items:end;column-gap:14px;width:100%}
+#index li .n{grid-column:1 / -1;font:500 clamp(13px,1.4vw,18px)/1 var(--cond);letter-spacing:.02em;color:var(--inkK);padding:0;opacity:.85}
+#index li .t{font:400 clamp(72px,15vh,170px)/.82 var(--comp);letter-spacing:.01em;color:var(--inkK);display:flex;white-space:pre}
+#index li .t .g{display:inline-block;width:.42em}
+#index li .t .lt{display:inline-block}
+#index li a::after{content:"↘";font:300 clamp(28px,5vh,52px)/1 var(--cond);color:#1f6b61;padding-bottom:.08em;transition:transform .3s}
+#index li a:hover .t{color:var(--inkK)}
+#index li a:hover::after{transform:translate(4px,4px)}
+#index li a:hover .t .lt{animation:jit .28s steps(2) infinite}
+@keyframes jit{50%{transform:translate(1px,-1px)}}
+#index .close{top:clamp(14px,2vh,24px);right:var(--pad);font:500 clamp(22px,3vw,40px)/1 var(--cond);letter-spacing:.01em;color:var(--inkK);text-transform:uppercase}
+#index .side{position:absolute;left:var(--pad);bottom:clamp(16px,3vh,30px);text-align:left;flex-direction:row;flex-wrap:wrap;gap:6px 18px;color:var(--inkK);opacity:.7}
+#index.on li{animation:ixin .55s cubic-bezier(.2,.8,.2,1) both}
+#index.on li:nth-child(2){animation-delay:.05s}#index.on li:nth-child(3){animation-delay:.1s}#index.on li:nth-child(4){animation-delay:.15s}#index.on li:nth-child(5){animation-delay:.2s}
+@keyframes ixin{0%{opacity:0;transform:translateY(18px);clip-path:inset(0 0 100% 0)}60%{opacity:1}100%{opacity:1;transform:none;clip-path:inset(0)}}
+
+/* ---------- pixel / terminal labels ---------- */
+.bar .tc,#bstep,.vn,#vof,.vlab,.bmap .mono,.laurel .lt .mono,.legal{font-family:var(--pix);letter-spacing:.06em}
+.bar .tc{font-size:17px}
+#bstep,.vlab{font-size:17px}
+.legal{font-size:16px}
+
+/* ---------- glitch slices on the big titles ---------- */
+.glx{position:relative;display:inline-block}
+.glx::before,.glx::after{content:attr(data-g);position:absolute;inset:0;pointer-events:none;opacity:0}
+.glx::before{color:var(--acc);transform:translate(-3px,0);clip-path:inset(12% 0 64% 0)}
+.glx::after{color:#ecebe6;mix-blend-mode:difference;transform:translate(4px,0);clip-path:inset(58% 0 18% 0)}
+.glx.fire::before{animation:glA .32s steps(3) 1}
+.glx.fire::after{animation:glB .32s steps(3) 1}
+.glx.fire{animation:glC .32s steps(2) 1}
+@keyframes glA{0%{opacity:1;clip-path:inset(10% 0 70% 0);transform:translate(-6px,0)}50%{opacity:1;clip-path:inset(45% 0 30% 0);transform:translate(5px,0)}100%{opacity:0}}
+@keyframes glB{0%{opacity:1;clip-path:inset(60% 0 10% 0);transform:translate(6px,0)}50%{opacity:1;clip-path:inset(20% 0 62% 0);transform:translate(-4px,0)}100%{opacity:0}}
+@keyframes glC{50%{transform:skewX(-6deg) translateX(2px)}}
+
+/* ---------- logo strip as a white tape ---------- */
+.marq.rm{background:var(--paperW);border:0;position:relative;margin-inline:calc(var(--pad) * -1);padding-inline:0;-webkit-mask:none;mask:none;transform:rotate(-.6deg);box-shadow:0 10px 30px -18px rgba(0,0,0,.9)}
+.marq.rm::before{content:"";position:absolute;inset:0;background-image:var(--noise);background-size:180px;opacity:.35;mix-blend-mode:multiply;pointer-events:none}
+.marq.rm img{filter:brightness(0);opacity:.82}
+
+/* ---------- halftone transitions into the white sections ---------- */
+.ht-edge{height:clamp(46px,7vh,80px);background:
+  radial-gradient(circle at center,var(--paperW) 0 var(--r),transparent calc(var(--r) + .5px)) 0 0/9px 9px;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000);mask-image:linear-gradient(180deg,transparent,#000);--r:3.2px}
+.ht-edge.inv{-webkit-mask-image:linear-gradient(0deg,transparent,#000);mask-image:linear-gradient(0deg,transparent,#000)}
+
+/* ---------- BOOKING: white paper ending ---------- */
+#contact{background:var(--paperW);color:var(--inkK);margin-inline:0;position:relative}
+#contact::before{content:"";position:absolute;inset:0;background-image:var(--noise);background-size:200px;opacity:.16;mix-blend-mode:multiply;pointer-events:none}
+#contact .big{mix-blend-mode:normal;color:var(--inkK);font-family:var(--comp);font-weight:400;padding-top:clamp(20px,4vh,40px);line-height:.86}
+#contact .big:hover{color:var(--acc)}
+#contact .cgrid,#contact .legal{border-color:rgba(11,12,12,.18)}
+#contact .cgrid .mono:first-child,#contact .legal{color:#5c605e}
+#contact .cgrid a:hover{color:var(--acc)}
+
+/* ---------- small alt details ---------- */
+.vsec{font-family:var(--comp);font-weight:400;font-size:clamp(44px,5vw,84px);letter-spacing:.01em}
+#film .fsec{font-family:var(--pix);font-size:clamp(20px,1.8vw,28px);letter-spacing:.08em}
+@media (prefers-reduced-motion:reduce){.glx.fire,.glx.fire::before,.glx.fire::after,#index.on li{animation:none}}
+@media (max-width:820px){
+  #index li .t{font-size:clamp(56px,10.5vh,96px)}
+  .vsec{font-size:44px}
+  .marq.rm{transform:rotate(-1deg)}
+}
