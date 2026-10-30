@@ -104,3 +104,7 @@ html,body{overflow-x:clip}
 
 /* results sat 1 pad off-screen to the left (negative margin with no parent padding) */
 #results{margin-inline:0}
+
+/* clean hero: the lema lives in the results band (static), the repeated stats are gone */
+#results .lema2{display:block;margin:0;white-space:nowrap;text-align:center;color:#ecebe6;line-height:.86;position:relative;z-index:1;padding:clamp(18px,3vh,34px) 0 clamp(18px,3vh,34px)}
+#results{padding-top:0}
