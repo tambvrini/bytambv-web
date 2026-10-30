@@ -55,7 +55,7 @@
 /* ---------- BOOKING: white paper ending ---------- */
 #contact{background:var(--paperW);color:var(--inkK);margin-inline:0;position:relative}
 #contact::before{content:"";position:absolute;inset:0;background-image:var(--noise);background-size:200px;opacity:.16;mix-blend-mode:multiply;pointer-events:none}
-#contact .big{mix-blend-mode:normal;color:var(--inkK);font-family:var(--comp);font-weight:400;padding-top:clamp(20px,4vh,40px);line-height:.86}
+#contact .big{mix-blend-mode:normal;color:var(--inkK);padding-top:clamp(20px,4vh,40px)}
 #contact .big:hover{color:var(--acc)}
 #contact .cgrid,#contact .legal{border-color:rgba(11,12,12,.18)}
 #contact .cgrid .mono:first-child,#contact .legal{color:#5c605e}
