@@ -68,7 +68,8 @@ function fit() {
     const host = el.parentElement, cs = getComputedStyle(host);
     const w = host.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     el.style.fontSize = '100px'; el.style.display = 'inline-block';
-    const s = el.scrollWidth; el.style.fontSize = (100 * w / s * .995) + 'px'; el.style.display = 'block';
+    const k = innerWidth > 820 ? (parseFloat(el.dataset.fit) || 1) : 1;
+    const s = el.scrollWidth; el.style.fontSize = (100 * w * k / s * .995) + 'px'; el.style.display = 'block';
   });
 }
 fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit);
