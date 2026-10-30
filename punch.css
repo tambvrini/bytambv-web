@@ -238,3 +238,6 @@
 .br-on .btot{opacity:0}
 @media (max-width:820px){.btot b{font-size:40px}}
 .bt[data-branch]{cursor:pointer}
+
+/* mobile: lighter GPU load */
+@media (max-width:820px){.amb img{filter:blur(36px) saturate(1.2)}.vcard{box-shadow:none}.bt{box-shadow:none}}
