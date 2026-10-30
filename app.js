@@ -234,7 +234,7 @@ const video = $('#hv'); video.muted = true; const pv = video.play(); pv && pv.ca
       float ab = .0012 + length(f) * .018 + t.b * .006;
       vec3 c = vec3(texture2D(tex, uv + dir * ab).r, texture2D(tex, uv).g, texture2D(tex, uv - dir * ab).b);
       float l = dot(c, vec3(.299, .587, .114));
-      c += vec3(0.) * (1. - l);              // teal in the shadows
+      c += vec3(-.006, .012, .016) * (1. - l);              // teal in the shadows
       c = mix(c, c * c * (3. - 2. * c), .25);                 // a touch of contrast
       c += t.b * vec3(.02, .05, .05);                          // trail glows faintly cyan
       vec2 q = vUv - .5; c *= 1. - dot(q, q) * .9;            // vignette
