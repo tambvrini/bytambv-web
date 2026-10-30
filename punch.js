@@ -10,7 +10,7 @@ const intro = $('#intro');
 if (intro) intro.classList.add('done');
 
 /* ---------- hero: lema words split apart, TAMBV letters spread as you scroll away ---------- */
-const hero = $('#hero'), lw = $$('#lema .w'), ll = $$('#h1 span');
+const hero = $('#hero'), lema = $('#lema'), lw = $$('#lema .w'), ll = $$('#h1 span');
 lw.forEach(w => w.addEventListener('animationend', () => { w.style.animation = 'none'; w.style.opacity = 1; w.style.filter = 'none'; }));
 
 /* ---------- kinetic strips ---------- */
@@ -277,7 +277,8 @@ function loop() {
   if (!reduce) {
     const hp = clamp(y / Math.max(1, hero.clientHeight), 0, 1);
     if (hp < 1) {
-      lw.forEach((w, i) => { w.style.transform = `translate3d(${(i - 1) * hp * 26}vw,0,0)`; w.style.opacity = 1 - hp * .9; });
+      // lema stays together: on desktop it grows from 70% to full width as you leave the hero, no word spreading
+      if (lema) { const g = innerWidth > 820 ? 1 + hp * .4 : 1; lema.style.transform = `scale(${g.toFixed(4)})`; lema.style.opacity = (1 - hp * .7).toFixed(3); }
       ll.forEach((l, i) => { l.style.transform = `translate3d(${(i - 2) * hp * 5}vw,${-hp * 60}px,0)`; });
     }
     kins.forEach(k => {

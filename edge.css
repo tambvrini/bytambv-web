@@ -98,3 +98,9 @@
 html,body{overflow-x:clip}
 *{scrollbar-width:none}
 *::-webkit-scrollbar{display:none;width:0;height:0}
+
+#hero .lema{transform-origin:50% 0;will-change:transform}
+#hero .lema .w{transform:none!important}
+
+/* results sat 1 pad off-screen to the left (negative margin with no parent padding) */
+#results{margin-inline:0}
