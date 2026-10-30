@@ -115,3 +115,7 @@ html,body{overflow-x:clip}
 .bphotos{padding-block:clamp(14px,2.4vh,26px) clamp(8px,1.6vh,16px)}
 .bphotos .collage{display:grid;height:clamp(240px,34vw,460px);grid-column:auto;grid-row:auto}
 @media (max-width:820px){.bsec{font-size:32px;top:52px}.bhud{top:calc(52px + 32px * .86 + 22px)}.bphotos .collage{height:56vw}}
+
+/* film: no black letterbox bars, the stage sits on the site's own background */
+#film .lb::before,#film .lb::after{display:none}
+#film .st{background:var(--bg)}

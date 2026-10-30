@@ -40,7 +40,7 @@ const MERCH = [
   ['bolso-monograma-tambvrini', 'Bolso Monograma', 260], ['polo-golf', 'Polo Golf', 30], ['ignatius-sweater-thumb', 'Suéter Ignatius', 300, 'sueter-ignatius'],
   ['polo-patricius', 'Polo Patricius', 25], ['sueter-captain', 'Suéter Captain', 50], ['polo-aureus', 'Polo Aureus', 30], ['traje-monograma-tambvrini', 'Traje Monograma', 200],
 ];
-const FRAMES = ['gd-boy', 'gd1', 'gd2', 'gd3', 'gd4', 'gd6', 'gd7', 'gd8'];
+const FRAMES = ['gd-boy', 'gd1', 'gd2', 'gd3', 'gd4', 'gd6', 'gd7'];
 const LINESI = { es: ['Un romance psicológico.', 'Anime de los 90.', 'Deseo, confianza…', '…y oscuridad.'], en: ['A psychological romance.', '90s anime.', 'Desire, trust…', '…and darkness.'] };
 let LANG = 'es', LINES = LINESI.es;
 
