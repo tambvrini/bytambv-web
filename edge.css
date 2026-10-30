@@ -62,12 +62,10 @@
 #contact .cgrid a:hover{color:var(--acc)}
 
 /* ---------- small alt details ---------- */
-.vsec{font-family:var(--comp);font-weight:400;font-size:clamp(44px,5vw,84px);letter-spacing:.01em}
 #film .fsec{font-family:var(--pix);font-size:clamp(20px,1.8vw,28px);letter-spacing:.08em}
 @media (prefers-reduced-motion:reduce){.glx.fire,.glx.fire::before,.glx.fire::after,#index.on li{animation:none}}
 @media (max-width:820px){
   #index li .t{font-size:clamp(56px,10.5vh,96px)}
-  .vsec{font-size:44px}
   .marq.rm{transform:rotate(-1deg)}
 }
 
@@ -89,3 +87,8 @@
 @keyframes hlogo-in{0%{opacity:0;clip-path:inset(0 100% 0 0)}100%{opacity:1;clip-path:inset(0)}}
 @media (max-width:820px){#hero h1 .hlogo{width:92vw}}
 @media (prefers-reduced-motion:reduce){#hero h1 .hlogo{animation:none;opacity:1}}
+
+/* Music Videos title: same heavy condensed type as the song names, always clear of the big clip number */
+.vsec{--vs:clamp(34px,3.6vw,60px);--vt:clamp(52px,7.5vh,76px);font-family:var(--cond);font-variation-settings:"wdth" 62;font-weight:800;font-size:var(--vs);line-height:.86;letter-spacing:-.005em;top:var(--vt)}
+.vtop{top:calc(var(--vt0,clamp(52px,7.5vh,76px)) + clamp(34px,3.6vw,60px) * .86 + clamp(26px,4vh,44px))}
+@media (max-width:820px){.vsec{--vs:32px;--vt:52px}.vtop{top:calc(52px + 32px * .86 + 22px)}}
