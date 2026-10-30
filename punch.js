@@ -221,12 +221,24 @@ function openBranch(tile) {
   $('.bh span', br).textContent = isVelada ? 'LA VELADA DEL AÑO VI' : isCupra ? 'CUPRA · RAVAL' : 'DWT4 · Jordi Wild';
   $('.bh b', br).textContent = active.length + ' reels';
   const S = bst.getBoundingClientRect(), T = tile.getBoundingClientRect();
-  const ox0 = T.left + T.width / 2 - S.left, oy0 = T.top + T.height / 2 - S.top, W = S.width, H = S.height, mob = W < 820;
-  const cw = mob ? W * .27 : Math.min(W * .14, 230), ch = cw * 16 / 10;
+  let ox0 = T.left + T.width / 2 - S.left, oy0 = T.top + T.height / 2 - S.top; const W = S.width, H = S.height, mob = W < 820;
   const count = active.length;
-  const pts = rls.map((_, i) => { const mid = (count - 1) / 2, u = (i - mid) / Math.max(1, mid); return mob ? { x: W / 2 + (i - mid) * cw * 1.12, y: H * (i < 3 ? .36 : .66) } : { x: W / 2 + (i - mid) * cw * 1.2, y: H * .56 - Math.abs(u) * 30 }; });
+  let cw = Math.min(W * .14, 230), ch = cw * 16 / 10, pts;
+  if (mob) {
+    // phone: a centred grid that always fits on screen (3 per row; 4 reels go 2+2)
+    const per = count <= 3 ? count : count === 4 ? 2 : 3, rows = Math.ceil(count / per), gap = 10, pad = 16;
+    const top = H * .27, room = H - top - 90;
+    cw = Math.min((W - pad * 2 - gap * (per - 1)) / per, (room - gap * (rows - 1)) / rows / 1.6, 170); ch = cw * 1.6;
+    pts = rls.map((_, i) => { const r = Math.floor(i / per), inRow = Math.min(per, count - r * per), c = i - r * per;
+      return { x: W / 2 + (c - (inRow - 1) / 2) * (cw + gap), y: top + ch / 2 + r * (ch + gap) }; });
+    // keep the branch origin on screen, just under the grid
+    const gridBottom = top + rows * ch + (rows - 1) * gap;
+    ox0 = Math.min(W - 24, Math.max(24, ox0)); oy0 = Math.min(H - 30, Math.max(gridBottom + 34, Math.min(oy0, H - 30)));
+  } else {
+    pts = rls.map((_, i) => { const mid = (count - 1) / 2, u = (i - mid) / Math.max(1, mid); return { x: W / 2 + (i - mid) * cw * 1.2, y: H * .56 - Math.abs(u) * 30 }; });
+  }
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  svg.innerHTML = pts.map((p, i) => { const mx = (ox0 + p.x) / 2, my = Math.min(oy0, p.y) - 80; return `<path d="M${ox0},${oy0} Q${mx},${my} ${p.x},${p.y - ch / 2}" style="--d:${i * 70}ms" pathLength="1"/>`; }).join('') + `<circle cx="${ox0}" cy="${oy0}" r="5"/>`;
+  svg.innerHTML = pts.slice(0, count).map((p, i) => { const mx = (ox0 + p.x) / 2, my = mob ? Math.max(oy0, p.y) + 40 : Math.min(oy0, p.y) - 80, ey = mob ? p.y + ch / 2 : p.y - ch / 2; return `<path d="M${ox0},${oy0} Q${mx},${my} ${p.x},${ey}" style="--d:${i * 70}ms" pathLength="1"/>`; }).join('') + `<circle cx="${ox0}" cy="${oy0}" r="5"/>`;
   rls.forEach((r, i) => { r.style.width = cw + 'px'; r.style.height = ch + 'px'; r.style.setProperty('--fx', (ox0 - pts[i].x) + 'px'); r.style.setProperty('--fy', (oy0 - pts[i].y) + 'px'); r.style.left = (pts[i].x - cw / 2) + 'px'; r.style.top = (pts[i].y - ch / 2) + 'px'; });
   br.classList.remove('on'); void br.offsetWidth; br.classList.remove('ready'); br.classList.add('on'); bst.classList.add('br-on'); clearTimeout(br._t); br._t = setTimeout(() => br.classList.add('ready'), 1200); br.setAttribute('aria-hidden', 'false'); brOpen = true; brY = scrollY;
 }
