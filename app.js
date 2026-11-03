@@ -12,9 +12,7 @@ const CLIPS = [
   { t: 'VUDU', v: '444K', img: 'vudu', url: 'https://www.youtube.com/watch?v=pBTnjICATt8', likes: '11K', age: '2026-08-26' },
   { t: 'Corona de Flores', v: '95K', img: 'corona', url: 'https://www.youtube.com/watch?v=Rw9RxRElJAU', dur: '2:18', age: '6m' },
   { t: 'Polvo de estrellas', v: '155K', img: 'polvo', url: 'https://www.youtube.com/watch?v=Zw3WfPCBSXk', likes: '8K', age: '2025-08-29' },
-  { t: 'Eter', v: '111K', img: 'eter', url: 'https://www.youtube.com/watch?v=OqTtsEaMvg8', dur: '3:02', age: '1y' },
   { t: 'No me mires', v: '96K', img: 'nomemires', url: 'https://www.youtube.com/watch?v=iCjTMngRDJw', dur: '2:50', age: '1y' },
-  { t: 'Dejame Volar // Debilidad', v: '67K', img: 'dejamevolar', url: 'https://www.youtube.com/watch?v=xSDp29Fx2yg', dur: '4:42', age: '8m', feat: 'zerostumped' },
 ];
 const TILES = [
   { k: 'wide', b: 'La Velada del Año VI', logo: 'velada6', m: '+8.5M', l: 'Views orgánicas · 0 € en ads', le: 'Organic views · €0 in ads', img: 'velada-w', url: 'https://www.instagram.com/reel/Da72bCOtkdN/', g: 'a' },
