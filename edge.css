@@ -122,5 +122,6 @@ html,body{overflow-x:clip}
 
 /* festival: WINNER, big and unmistakable */
 .laurel .lf{width:clamp(34px,3.6vw,58px)}
-.laurel b.win{font-size:clamp(40px,4.6vw,78px);line-height:.86;color:#ecebe6;letter-spacing:.02em}
+.laurel b.win{font-size:clamp(34px,3.8vw,64px);white-space:nowrap;line-height:.86;color:#ecebe6;letter-spacing:.02em}
 .laurel .win-s{font-size:13px!important;letter-spacing:.12em!important;opacity:1!important;color:var(--acc)}
+.laurel b.win em{color:var(--acc)}
