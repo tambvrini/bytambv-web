@@ -40,3 +40,6 @@
 .bar .wm{transition:color .4s}
 .bar.past .wm{color:var(--acc)}
 .bar.paper{color:#0b0c0c;text-shadow:none}.bar.paper .wm{color:#0b0c0c}
+
+/* cursor: native only, no custom dot / "VER" bubble */
+#cur{display:none!important}
